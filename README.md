@@ -11,6 +11,7 @@ This project contains Terraform configurations to set up a complete AWS ECS infr
 - ECS Task Execution Role with proper IAM permissions
 
 ## Project Structure
+```sh
 AutoDocs-ecs/
 ├── backend.tf         # S3 backend configuration for remote state storage
 ├── main.tf            # Primary Terraform configuration file for overall infrastructure
@@ -46,7 +47,7 @@ AutoDocs-ecs/
         ├── main.tf
         ├── variables.tf
         └── outputs.tf
-
+```
 ## Prerequisites
 
 - AWS CLI configured with appropriate credentials
