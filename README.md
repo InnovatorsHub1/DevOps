@@ -23,6 +23,7 @@ modules/          # Reusable Terraform modules
       ├── main.tf
       ├── variables.tf
       └── outputs.tf
+```
 
 ## Prerequisites
 
@@ -30,6 +31,7 @@ modules/          # Reusable Terraform modules
 - Terraform installed (version 0.12 or later)
 - S3 bucket created for Terraform state
 - DynamoDB table for state locking
+
 
 ## Configuration
 
