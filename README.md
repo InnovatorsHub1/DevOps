@@ -8,6 +8,7 @@ This project contains Terraform configurations to set up AWS infrastructure with
 - Internet Gateway and NAT Gateway for network routing
 
 ## Project Structure
+```sh
 AutoDocs-ecs/
 ├── backend.tf         # S3 backend configuration for remote state storage
 ├── main.tf           # Primary Terraform configuration file
