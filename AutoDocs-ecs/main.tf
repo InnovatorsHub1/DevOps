@@ -21,3 +21,8 @@ module "nat_gateway" {
     internet_gateway              = module.vpc.internet_gateway
     vpc_id                        = module.vpc.vpc_id
 }
+
+module "ecs-task-execution-role" {
+    source                        = "../modules/ecs-task-execution-role"
+    project_name                  = module.vpc.project_name
+}
