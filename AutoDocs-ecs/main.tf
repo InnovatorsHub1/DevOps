@@ -26,8 +26,14 @@ module "ecs-task-execution-role" {
   source       = "../modules/ecs-task-execution-role"
   project_name = module.vpc.project_name
 }
-
+# Create ECS cluster
 module "ecr" {
   source       = "../modules/ecr"
+  project_name = module.vpc.project_name
+}
+
+# S3 bucket for frontend
+module "s3_frontend" {
+  source       = "../modules/s3-frontend"
   project_name = module.vpc.project_name
 }
