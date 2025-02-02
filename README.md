@@ -13,16 +13,29 @@ AutoDocs-ecs/
 ├── backend.tf         # S3 backend configuration for remote state storage
 ├── main.tf           # Primary Terraform configuration file
 ├── variables.tf      # Variable definitions for the project
-└── terraform.tfvars  # Variable values for the project
-modules/          # Reusable Terraform modules
-  ├── nat-gateway/  # NAT Gateway configuration
-  │   ├── main.tf
-  │   └── variables.tf
-  │
-  └── vpc/          # VPC and networking module
-      ├── main.tf
-      ├── variables.tf
-      └── outputs.tf
+├── terraform.tfvars  # Variable values for the project
+│
+└── modules/          # Reusable Terraform modules
+    ├── nat-gateway/  # NAT Gateway configuration
+    │   ├── main.tf
+    │   └── variables.tf
+    │
+    ├── vpc/          # VPC and networking module
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    │
+    ├── s3-frontend/  # S3 bucket for React frontend hosting
+    │   ├── main.tf
+    │   └── outputs.tf
+    │
+    ├── ecr/          # Elastic Container Registry for Docker images
+    │   ├── main.tf
+    │   └── variables.tf
+    │
+    └── ecs-task-execution-role/  # IAM roles and policies for ECS
+        ├── main.tf
+        └── variables.tf
 ```
 
 ## Prerequisites
@@ -35,36 +48,24 @@ modules/          # Reusable Terraform modules
 
 ## Configuration
 
-1. Create an S3 bucket for Terraform state:
-```sh
-aws s3 mb s3://autodocs-terraform-remote-state
-```
-2. Create a DynamoDB table for state locking:
-```sh
-aws dynamodb create-table \
-    --table-name autodocs-terraform-state-lock \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
-```
-3. Create in AutoDocs-ecs folder a terraform.tfvars file with the following variables:
+1. Create in AutoDocs-ecs folder a terraform.tfvars file with the following variables:
 ```env
 region="il-central-1"
 project_name="autodocs"
 vpc_cidr="10.0.0.0/16"
 public_subnet_az1_cidr="10.0.0.0/24"
 ```
-4. Initialize Terraform:
+2. Initialize Terraform:
 ```sh
 terraform init
 ```
 
-5. Review the planned changes:
+3. Review the planned changes:
 ```sh
 terraform plan
 ```
 
-6. Apply the configuration:
+4. Apply the configuration:
 ```sh
 terraform apply
 ```
