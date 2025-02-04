@@ -21,12 +21,15 @@ module "nat_gateway" {
   vpc_id               = module.vpc.vpc_id
 }
 
-# Create ECS task execution role
-module "ecs-task-execution-role" {
-  source       = "../modules/ecs-task-execution-role"
-  project_name = module.vpc.project_name
-}
 # Create ECS cluster
+module "ecs_cluster" {
+  source           = "../modules/ecs-cluster"
+  project_name     = module.vpc.project_name
+  vpc_id           = module.vpc.vpc_id
+  public_subnet_id = module.vpc.public_subnet_az1_id
+}
+
+# Create ECR
 module "ecr" {
   source       = "../modules/ecr"
   project_name = module.vpc.project_name
@@ -35,5 +38,5 @@ module "ecr" {
 # S3 bucket for frontend
 module "s3_frontend" {
   source       = "../modules/s3-frontend"
-  project_name = module.vpc.project_name
+  project_name = var.project_name
 }
