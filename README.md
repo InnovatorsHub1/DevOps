@@ -33,9 +33,10 @@ AutoDocs-ecs/
     │   ├── main.tf
     │   └── variables.tf
     │
-    └── ecs-task-execution-role/  # IAM roles and policies for ECS
+    └── ecs-cluster/  # ECS Cluster configuration
         ├── main.tf
-        └── variables.tf
+        ├── variables.tf
+        └── outputs.tf
 ```
 
 ## Prerequisites
