@@ -16,14 +16,14 @@ AutoDocs-ecs/
 ├── terraform.tfvars  # Variable values for the project
 │
 └── modules/          # Reusable Terraform modules
-    ├── nat-gateway/  # NAT Gateway configuration
-    │   ├── main.tf
-    │   └── variables.tf
-    │
     ├── vpc/          # VPC and networking module
     │   ├── main.tf
     │   ├── variables.tf
     │   └── outputs.tf
+    │
+    ├── nat-gateway/  # NAT Gateway configuration
+    │   ├── main.tf
+    │   └── variables.tf
     │
     ├── s3-frontend/  # S3 bucket for React frontend hosting
     │   ├── main.tf
@@ -42,9 +42,7 @@ AutoDocs-ecs/
 
 - AWS CLI configured with appropriate credentials
 - Terraform installed (version 0.12 or later)
-- S3 bucket created for Terraform state
-- DynamoDB table for state locking
-
+- S3 bucket created for Terraform state and lock
 
 ## Configuration
 
