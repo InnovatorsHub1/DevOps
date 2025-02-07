@@ -34,3 +34,20 @@ module "nlb" {
   environment       = var.environment
   container_port    = var.container_port
 }
+
+module "ecs" {
+  source                = "../modules/ecs"
+  project_name          = var.project_name
+  region                = var.region
+  ecr_repository_url    = module.ecr.ecr_repository_url
+  environment           = var.environment
+  private_subnet_ids    = module.vpc.private_subnet_ids
+  public_subnet_ids     = module.vpc.public_subnet_ids
+  vpc_cidr_block        = module.vpc.vpc_cidr_block
+  vpc_id                = module.vpc.vpc_id
+  azs                   = ["${var.az1}", "${var.az2}"]
+  container_port        = var.container_port
+  target_group_arn      = module.nlb.target_group_arn
+  mongodb_username      = var.mongodb_username
+  mongodb_password      = var.mongodb_password
+}
