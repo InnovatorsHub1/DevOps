@@ -47,12 +47,21 @@ AutoDocs-ecs/
 
 ## Configuration
 
-1. Create in AutoDocs-ecs folder a terraform.tfvars file with the following variables:
+1. Create in AutoDocs-ecs folder a terraform.tfvars file with the following variables (exemple):
 ```env
-region="il-central-1"
-project_name="autodocs"
-vpc_cidr="10.0.0.0/16"
-public_subnet_az1_cidr="10.0.0.0/24"
+project_name            = "autodocs"
+environment             = "production"
+region                  = "il-central-1" 
+vpc_cidr                = "10.0.0.0/16"
+az1                     = "il-central-1a"
+az2                     = "il-central-1b"
+public_subnet_az1_cidr  = "10.0.0.0/24"
+public_subnet_az2_cidr  = "10.0.1.0/24"
+private_subnet_az1_cidr = "10.0.2.0/24"
+private_subnet_az2_cidr = "10.0.3.0/24"
+container_port          = 3000              // the continer port
+mongodb_username        = "the username"
+mongodb_password        = "the password"
 ```
 2. Initialize Terraform:
 ```sh
