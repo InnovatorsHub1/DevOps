@@ -1,20 +1,20 @@
-output "region" {
-  value = var.region
-}
-
-output "project_name" {
-  value = var.project_name
-}
-
 output "vpc_id" {
-  value = aws_vpc.vpc.id
+  description = "The ID of the VPC"
+  value       = module.vpc.vpc_id
 }
 
-output "public_subnet_az1_id" {
-  value = aws_subnet.public_subnet_az1.id
+output "public_subnet_ids" {
+  description = "IDs of public subnets"
+  value       = module.vpc.public_subnets
+}
+
+output "private_subnet_ids" {
+  description = "IDs of private subnets"
+  value       = module.vpc.private_subnets
+}
+
+output "vpc_cidr_block" {
+  description = "CIDR block of the VPC"
+  value       = module.vpc.vpc_cidr_block
   
-}
-
-output "internet_gateway" {
-  value = aws_internet_gateway.internet_gateway
 }
