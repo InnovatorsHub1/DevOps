@@ -2,9 +2,10 @@ resource "aws_lb" "nlb" {
   name               = "${var.project_name}-nlb"
   internal           = false
   load_balancer_type = "network"
-  subnets            = [var.public_subnet_ids[0], var.public_subnet_ids[1]]
+  subnets            = var.public_subnet_ids
 
   enable_deletion_protection = false
+  enable_cross_zone_load_balancing = true
 
   tags = merge({
     Environment = var.environment

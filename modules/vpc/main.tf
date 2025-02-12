@@ -3,9 +3,9 @@ module "vpc" {
   version = "~> 5.0"
 
   name = "${var.project_name}-${var.environment}-vpc"
-  cidr = var.cidr_block
+  cidr = "10.0.0.0/16"
 
-  azs             = var.azs
+  azs             = ["il-central-1a", "il-central-1b"]
   private_subnets = [for i, az in var.azs : cidrsubnet(var.cidr_block, 4, i)]
   public_subnets  = [for i, az in var.azs : cidrsubnet(var.cidr_block, 8, 48 + i)]
 
